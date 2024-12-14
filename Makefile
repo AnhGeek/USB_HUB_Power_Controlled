@@ -10,7 +10,7 @@ main.rel: main.c
  UsbDescriptor.rel: UsbDescriptor.c
 	sdcc -c UsbDescriptor.c
 
-all: main.rel
+all: hex main.rel
 	packihx main.ihx > main.hex
 	
 clean:
