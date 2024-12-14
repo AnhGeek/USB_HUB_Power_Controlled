@@ -13,8 +13,13 @@ Simple HID program: Attached a simple HID program to help you test connection.
 - Programmer: CH551G doesn't need a programmer hardware, you can download program via USB interface. It only needs a [Download Tool](https://www.wch-ic.com/downloads/WCHISPTool_Setup_exe.html) to flash the software.
 
 ## 📄 Files
-- **PCB**: contains the PCB design.
+- **PCB folder**: contains the PCB design.
      - Schematic: [link](https://github.com/AnhGeek/USB_HUB_Power_Controlled/blob/main/PCB/Schematic_Usb-hub-power-control_2024-12-14.pdf)
+       ![sche](https://github.com/AnhGeek/USB_HUB_Power_Controlled/blob/main/img/Schematic_Usb-hub-power-control_2024-12-14.png)
+     - PCB: very small, I designed it to match the dimensions of the Raspberry Pi Zero.
+       ![PCB](https://github.com/AnhGeek/USB_HUB_Power_Controlled/blob/main/img/PCB_PCB_Usb-hub-power-control_2024-12-14.png)
+     - 3D picture:
+       ![3d-image](https://github.com/AnhGeek/USB_HUB_Power_Controlled/blob/main/img/3D_Usb-hub-power-control_2024-12-14.png)
 - **[SimpleHIDWrite3](https://github.com/AnhGeek/USB_Relay_HID/tree/main/SimpleHIDWrite3)**: an simple HID program to write directly and data to endpoint
 - **Makefile**: run this makefile via **"make all** to rebuild entirely project
 
