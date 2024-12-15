@@ -8,6 +8,7 @@
 #define STATUS_STATE 1
 
 void delay_ms(uint16_t u16Delay);
+void jump_to_bootloader();
 
 void delay_ms(uint16_t u16Delay)
 {
@@ -59,6 +60,24 @@ void send(uint8_t u8Data)
 	}
 }
 
+#define BOOT_ADDR  0x3800
+
+/* This function provided a way to access the internal bootloader */
+void jump_to_bootloader()
+{
+	USB_INT_EN = 0;
+	USB_CTRL = 0x06;
+	
+	delay_ms(100);
+	
+	EA = 0;/* Disable all interrupts */
+	
+	__asm
+		LJMP BOOT_ADDR /* Jump to bootloader */
+	__endasm;	
+	while(1); 
+}
+
 uint8_t update_bit(uint8_t byte, uint8_t bit_position, uint8_t value) {
     if (bit_position > 7 || (value != 0 && value != 1)) {
         // Invalid input; return the original byte.
@@ -82,6 +101,7 @@ void main(void)
 	uint8_t tmp, len = 0;
 	uint8_t u8ControlState = DATA_STATE;
     uint8_t usb_port_state = 0xFF;
+	uint8_t jump_to_boot = 0x00;
 	
 	/* clock */
 	SAFE_MOD = 0x55;
@@ -144,6 +164,10 @@ void main(void)
         if(U_SIE_FREE)
         {
             P1 = usb_port_state;
+			if(jump_to_boot == 0x01)
+			{
+				jump_to_bootloader();
+			}
         }
 		
 		if (UIF_TRANSFER) {
@@ -295,6 +319,9 @@ void main(void)
 				} else if (u8Ep1Buff[0] == 0x03) 
 				{
 					usb_port_state = update_bit(usb_port_state, 5, 1);
+				}  else if (u8Ep1Buff[0] == 0xFE) 
+				{
+					jump_to_boot = 0x01;
 				} 
                 else if (u8Ep1Buff[0] == 0xFF) 
 				{
