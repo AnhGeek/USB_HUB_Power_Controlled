@@ -14,7 +14,7 @@ Simple HID program: Attached a simple HID program to help you test connection.
 
 ## 📄 Files
 - **PCB folder**: contains the PCB design.
-     - Schematic: [type A](https://github.com/AnhGeek/USB_HUB_Power_Controlled/blob/main/PCB/TypeA/Schematic_Usb-hub-power-control_2024-12-14.pdf), [type C](https://github.com/AnhGeek/USB_HUB_Power_Controlled/blob/main/PCB/TypeC/Schematic_Usb-hub-power-control-USB-C_2024-12-15.pdf)
+     - Schematic: [micro USB](https://github.com/AnhGeek/USB_HUB_Power_Controlled/blob/main/PCB/TypeA/Schematic_Usb-hub-power-control_2024-12-14.pdf), [type C](https://github.com/AnhGeek/USB_HUB_Power_Controlled/blob/main/PCB/TypeC/Schematic_Usb-hub-power-control-USB-C_2024-12-15.pdf)
        ![sche](https://github.com/AnhGeek/USB_HUB_Power_Controlled/blob/main/img/Schematic_Usb-hub-power-control_2024-12-14.png)
      - PCB: very small, I designed it to match the dimensions of the Raspberry Pi Zero.
        ![PCB](https://github.com/AnhGeek/USB_HUB_Power_Controlled/blob/main/img/PCB_PCB_Usb-hub-power-control_2024-12-14.png)
