@@ -7,6 +7,11 @@ Simple HID program: Attached a simple HID program to help you test connection.
 
 ## 🚀 Features
  - **[How to write data to an ENDPOINT](https://github.com/AnhGeek/USB_Relay_HID/tree/main#-how-to-use)**: instruction how to write a new value to an ENDPOINT. You can control USB port with a data written to ENDPOINT0
+ - **Turn on USB by writing data to ENDPOINT0**:
+   - USB1: ENDPOINT0=0x01
+   - USB2: ENDPOINT0=0x02
+   - USB3: ENDPOINT0=0x03
+ - **Turn off all**: ENDPOINT0=0x00
 
 ## 💻 MCU Used
 - CH551G: datasheet [Eng ver](https://akizukidenshi.com/goodsaffix/CH552.pdf)
