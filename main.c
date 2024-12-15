@@ -59,11 +59,29 @@ void send(uint8_t u8Data)
 	}
 }
 
+uint8_t update_bit(uint8_t byte, uint8_t bit_position, uint8_t value) {
+    if (bit_position > 7 || (value != 0 && value != 1)) {
+        // Invalid input; return the original byte.
+        return byte;
+    }
+    
+    if (value == 1) {
+        // Set the bit to 1.
+        byte |= (1 << bit_position);
+    } else {
+        // Clear the bit to 0.
+        byte &= ~(1 << bit_position);
+    }
+    
+    return byte;
+}
+
 void main(void)
 {
 	//uint8_t i;
 	uint8_t tmp, len = 0;
 	uint8_t u8ControlState = DATA_STATE;
+    uint8_t usb_port_state = 0xFF;
 	
 	/* clock */
 	SAFE_MOD = 0x55;
@@ -90,10 +108,14 @@ void main(void)
 	P1_DIR_PU |= (1 << 7);
 
     /* Default all USB port are powered */
-    P1_5 = 1;
-    P1_6 = 1;
-    P1_7 = 1;
+    P1_5 = 0;
+    P1_6 = 0;
+    P1_7 = 0;
 
+    /* Update P1 to USB port state */
+    usb_port_state = P1;
+
+    /* Internal pin debug */
 	P3 &= ~(1 << 0);
 	
 	T2MOD |= (1 << 7);
@@ -118,6 +140,11 @@ void main(void)
 			UEP0_CTRL = 0x02;
 			UIF_BUS_RST = 0;
 		}
+        /* Only turn on/off when CH551G USB is free */
+        if(U_SIE_FREE)
+        {
+            P1 = usb_port_state;
+        }
 		
 		if (UIF_TRANSFER) {
 			/* Program will jump in to this branch after a transfer being transmited successfully
@@ -256,18 +283,18 @@ void main(void)
 				/* ep1 */
 				if (u8Ep1Buff[0] == 0x00) 
                 {
-					P1_5 = 1;
-                    P1_6 = 1;
-                    P1_7 = 1;
+                    usb_port_state = update_bit(usb_port_state, 5, 1);
+                    usb_port_state = update_bit(usb_port_state, 6, 1);
+                    usb_port_state = update_bit(usb_port_state, 7, 1);
                 } else if (u8Ep1Buff[0] == 0x01) 
 				{
-                    P1_7 = 0;
+                    usb_port_state = update_bit(usb_port_state, 7, 1);
 				} else if (u8Ep1Buff[0] == 0x02) 
 				{
-					P1_6 = 0;
+					usb_port_state = update_bit(usb_port_state, 6, 1);
 				} else if (u8Ep1Buff[0] == 0x03) 
 				{
-					P1_5 = 0;
+					usb_port_state = update_bit(usb_port_state, 5, 1);
 				} 
                 else if (u8Ep1Buff[0] == 0xFF) 
 				{
