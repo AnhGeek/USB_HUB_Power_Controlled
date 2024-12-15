@@ -102,6 +102,7 @@ void main(void)
 	uint8_t u8ControlState = DATA_STATE;
     uint8_t usb_port_state = 0xFF;
 	uint8_t jump_to_boot = 0x00;
+	uint16_t timer_loop = 0;
 	
 	/* clock */
 	SAFE_MOD = 0x55;
@@ -154,6 +155,12 @@ void main(void)
 	u8UsbIndex = 0;
 	while (1) 
 	{
+		if (timer_loop == 60000)
+		{
+			if(P3 & 0x01) P3_0 = 0;
+			else P3_0 = 1;
+			timer_loop = 0;
+		} else timer_loop++;
 		if (UIF_BUS_RST) 
 		{
 			UEP0_DMA = (uint16_t)u8Buff;
@@ -312,13 +319,13 @@ void main(void)
                     usb_port_state = update_bit(usb_port_state, 7, 1);
                 } else if (u8Ep1Buff[0] == 0x01) 
 				{
-                    usb_port_state = update_bit(usb_port_state, 7, 1);
+                    usb_port_state = update_bit(usb_port_state, 7, 0);
 				} else if (u8Ep1Buff[0] == 0x02) 
 				{
-					usb_port_state = update_bit(usb_port_state, 6, 1);
+					usb_port_state = update_bit(usb_port_state, 6, 0);
 				} else if (u8Ep1Buff[0] == 0x03) 
 				{
-					usb_port_state = update_bit(usb_port_state, 5, 1);
+					usb_port_state = update_bit(usb_port_state, 5, 0);
 				}  else if (u8Ep1Buff[0] == 0xFE) 
 				{
 					jump_to_boot = 0x01;
