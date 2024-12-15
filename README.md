@@ -6,6 +6,8 @@ Python control: you can use HID lib to control the board.
 Simple HID program: Attached a simple HID program to help you test connection.
 
 ## 🚀 Features
+ - **Tested with three devices**: my mouse receiver, USB UART PLX2302, Pickit 2
+ ![tested](https://github.com/AnhGeek/USB_HUB_Power_Controlled/blob/main/img/tested.PNG)
  - **[How to write data to an ENDPOINT](https://github.com/AnhGeek/USB_Relay_HID/tree/main#-how-to-use)**: instruction how to write a new value to an ENDPOINT. You can control USB port with a data written to ENDPOINT0
  - **Turn on USB by writing data to ENDPOINT0**:
    - USB1: ENDPOINT0=0x01
