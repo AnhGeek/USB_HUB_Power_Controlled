@@ -156,14 +156,14 @@ const DescriptorData DeviceQualifierCfg =
 #define STRING_SERIAL_SIZE          16
 
 
-static UINT8C StringLangID[STRING_LANGID_SIZE] = 
+const UINT8C StringLangID[STRING_LANGID_SIZE] = 
 {
 	STRING_LANGID_SIZE,
 	USB_DESCR_TYP_STRING,
 	0x09, 0x04
 };
 
-static UINT8C StringVecdor[STRING_VENDOR_SIZE] = 
+const UINT8C StringVecdor[STRING_VENDOR_SIZE] = 
 {
 	STRING_VENDOR_SIZE,
 	USB_DESCR_TYP_STRING,
@@ -178,7 +178,7 @@ static UINT8C StringVecdor[STRING_VENDOR_SIZE] =
     'h', 0
 };
 
-static UINT8C StringProduct[STRING_PRODUCT_SIZE] = 
+const UINT8C StringProduct[STRING_PRODUCT_SIZE] = 
 {
 	STRING_PRODUCT_SIZE,
 	USB_DESCR_TYP_STRING,
@@ -198,7 +198,7 @@ static UINT8C StringProduct[STRING_PRODUCT_SIZE] =
     'D', 0	
 };
 
-static UINT8C StringSerial[STRING_SERIAL_SIZE] = 
+const UINT8C StringSerial[STRING_SERIAL_SIZE] = 
 {
 	STRING_SERIAL_SIZE,
 	USB_DESCR_TYP_STRING,
