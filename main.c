@@ -154,8 +154,8 @@ void main(void)
     /* Don't turn any UBS devices when being not recognized */
     P1 = 0xFF;
     /* Update P1 to USB port state */
-    usb_port_state = 0b00011111; // all USBs on
-    //usb_port_state = 0xFF; // all USBs off
+    //usb_port_state = 0b00011111; // all USBs on
+    usb_port_state = 0xFF; // all USBs off
 
     /* Internal pin debug */
     P3 &= ~(1 << 0);
@@ -357,6 +357,8 @@ void main(void)
                 } 
                   else if (u8Ep1Buff[0] == 0xFE) 
                 {
+                    P1 = 0xFF;
+                    delay_ms(200);
                     SAFE_MOD = 0x55;
                     SAFE_MOD = 0xAA;
                     GLOBAL_CFG = bSW_RESET;
