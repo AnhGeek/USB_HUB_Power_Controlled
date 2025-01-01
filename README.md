@@ -42,6 +42,7 @@ This design is provided free of charge and is intended for educational or person
 By using this design, you acknowledge and agree that you do so at your own risk and discretion. It is your responsibility to verify the suitability, safety, and compliance of this design for your specific needs and requirements.
 
 If you are uncertain about any aspect of this design, please consult a professional before proceeding.
+
 Note: **I have tried a new hub from Shopee, but it can't use with morden USB flash**. It might be the limitation of FE1.1s. It works well with others like: keyboard, mouse, usb uart, MCU programmer..., which it not required high USB bandwith.
 
 ## 📄 License
