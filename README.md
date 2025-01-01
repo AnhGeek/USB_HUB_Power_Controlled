@@ -10,10 +10,13 @@ Simple HID program: Attached a simple HID program to help you test connection.
  ![tested](https://github.com/AnhGeek/USB_HUB_Power_Controlled/blob/main/img/tested.PNG)
  - **[How to write data to an ENDPOINT](https://github.com/AnhGeek/USB_Relay_HID/tree/main#-how-to-use)**: instruction how to write a new value to an ENDPOINT. You can control USB port with a data written to ENDPOINT0
  - **Turn on USB by writing data to ENDPOINT0**:
-   - USB1: ENDPOINT0=0x01
-   - USB2: ENDPOINT0=0x02
-   - USB3: ENDPOINT0=0x03
+   - USB1: ENDPOINT0=0x01, send this command again to turn off
+   - USB2: ENDPOINT0=0x02, send this command again to turn off
+   - USB3: ENDPOINT0=0x03, send this command again to turn off
+   - Reset command: ENDPOINT0=0xFE
+   - Enter Bootloader from app: ENDPOINT0=0xFD
  - **Turn off all**: ENDPOINT0=0x00
+ - Note: you can set default status of all USB port via the variable **usb_port_state**.
 
 ## 💻 MCU Used
 - CH551G: datasheet [Eng ver](https://akizukidenshi.com/goodsaffix/CH552.pdf)
